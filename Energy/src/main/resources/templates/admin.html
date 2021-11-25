@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+</head>
+<body>
+<div th:switch="${items}">
+  <h2 th:case="null">No items yet!</h2>
+  <div th:case="*">
+    <h2>Items</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Manufacturer</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th>Caffeine(mg)</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.description}"></td>
+        <td th:text="${item.manufacturer}"></td>
+        <td th:text="${item.rating}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.caffeineAmount}"></td>
+        <td><a th:href="@{/delete/{id}(id=${item.ID})}">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/additem">Add a new item</a></p>
+</div>
+</body>
+</html>
