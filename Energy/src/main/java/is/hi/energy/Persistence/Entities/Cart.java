@@ -2,6 +2,8 @@ package is.hi.energy.Persistence.Entities;
 
 import javax.persistence.*;
 
+// One to one cart entity for each user.
+// where they can view all added items, or remove items from cart.
 @Entity
 @Table(name = "carts")
 public class Cart {
@@ -17,6 +19,7 @@ public class Cart {
 
     private int quantity;
 
+    // Getters & setters
     public Item getItem() {
         return item;
     }

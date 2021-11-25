@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Implementation class for User service.
 @Service
 public class UserServiceImplementation implements UserService {
 

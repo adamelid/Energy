@@ -8,6 +8,7 @@ import is.hi.energy.Services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// Implementation class for Cart service (adding/removing from cart).
 @Service
 public class CartServiceImplementation implements CartService {
     private CartRepository cartRepository;

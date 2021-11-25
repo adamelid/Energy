@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Entity class for each item (product) on the website.
 @Entity
 @Table(name = "items")
 public class Item {
@@ -18,8 +19,8 @@ public class Item {
     private double rating;
     private int price;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cart> carts = new ArrayList<>();
+    //@OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<Cart> carts = new ArrayList<>();
 
     public Item(String name, String description, String manufacturer, int caffeineAmount, double rating, int price) {
         this.name = name;
@@ -30,6 +31,7 @@ public class Item {
         this.price = price;
     }
 
+    // Getters & setters
     public long getID() {
         return ID;
     }

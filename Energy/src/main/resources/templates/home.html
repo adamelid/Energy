@@ -6,10 +6,22 @@
 </head>
 <body>
 <div>
-    <p>
-        <a href="login">Login</a>
-         /
-        <a href="signup">Sign up</a>
+    <p th:switch="${user.hasRole}">
+        <div th:case="'ADMIN'">
+            <h3>Currently signed in as:</h3>
+            <h3 th:text="${user.hasRole}"></h3>
+            <a href="logout">Logout</a>
+        </div>
+        <div th:case="'USER'">
+            <h3>Currently signed in as:</h3>
+            <h3 th:text="${user.username}"></h3>
+            <a href="logout">Logout</a>
+        </div>
+        <div th:case="*">
+            <a href="login">Login</a>
+            /
+            <a href="signup">Sign up</a>
+        </div>
     </p>
 </div>
 <div>

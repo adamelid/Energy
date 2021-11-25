@@ -1,6 +1,5 @@
 package is.hi.energy.Controllers;
 
-import is.hi.energy.Persistence.Entities.Cart;
 import is.hi.energy.Persistence.Entities.Item;
 import is.hi.energy.Services.CartService;
 import is.hi.energy.Services.ItemService;
@@ -44,13 +43,16 @@ public class ItemController {
     // Gathers the information from the /additem form and creates a new item.
     @RequestMapping(value = "/additem", method = RequestMethod.POST)
     public String addItem(Item item, BindingResult result, Model model){
+        // If the information given was faulty, return to newItem page to try again.
         if(result.hasErrors()){
             return "newItem";
         }
+        // Otherwise, save the new item and return to the front page.
         itemService.save(item);
         return "redirect:/";
     }
 
+    // Deletes the corresponding item from the item database and returns the user.
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteItem(@PathVariable("id") long id, Model model){
         Item itemToDelete = itemService.findByID(id);
@@ -58,6 +60,7 @@ public class ItemController {
         return "redirect:/";
     }
 
+    // Adds the corresponding item to the users cart and returns the user.
     @RequestMapping(value = "/addtocart/{id}", method = RequestMethod.GET)
     public String addToCart(@PathVariable("id") long id, Model model){
         Item itemToAdd = itemService.findByID(id);
@@ -65,10 +68,11 @@ public class ItemController {
         return "redirect:/";
     }
 
+    // Removes the corresponding item from the users cart and returns the user.
     @RequestMapping(value = "/removefromcart/{id}", method = RequestMethod.GET)
     public String removeFromCart(@PathVariable("id") long id, Model model){
         Item itemToRemove = itemService.findByID(id);
         cartService.removeFromCart(itemToRemove);
-        return "redirect:/";
+        return "redirect:/cart";
     }
 }

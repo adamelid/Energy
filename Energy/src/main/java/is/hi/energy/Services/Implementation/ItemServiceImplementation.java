@@ -1,6 +1,5 @@
 package is.hi.energy.Services.Implementation;
 
-import is.hi.energy.Persistence.Entities.Cart;
 import is.hi.energy.Persistence.Entities.Item;
 import is.hi.energy.Persistence.Repositories.ItemRepository;
 import is.hi.energy.Services.ItemService;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Implementation class for Item service.
 @Service
 public class ItemServiceImplementation implements ItemService {
     private ItemRepository itemRepository;

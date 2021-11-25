@@ -1,3 +1,4 @@
+// Currently not implemented Order class, although almost complete.
 package is.hi.energy.Persistence.Entities;
 
 public class Order {

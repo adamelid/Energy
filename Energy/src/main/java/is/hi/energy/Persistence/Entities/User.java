@@ -2,8 +2,9 @@ package is.hi.energy.Persistence.Entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
+// Entity class for each user on the website.
+// containing their information and role (Admin/User) otherwise they are a "guest".
 @Entity
 @Table(name = "users")
 public class User {
@@ -16,8 +17,8 @@ public class User {
     private String email;
     private String hasRole;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Cart> userCart = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    List<Cart> userCart = new ArrayList<>();
 
     public User(String username, String password, String email, String hasRole) {
         this.username = username;
@@ -25,6 +26,8 @@ public class User {
         this.email = email;
         this.hasRole = hasRole;
     }
+
+    // Getters & setters
 
     public long getID() {
         return ID;
