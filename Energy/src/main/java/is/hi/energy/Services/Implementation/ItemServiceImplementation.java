@@ -1,5 +1,6 @@
 package is.hi.energy.Services.Implementation;
 
+import is.hi.energy.Persistence.Entities.Cart;
 import is.hi.energy.Persistence.Entities.Item;
 import is.hi.energy.Persistence.Repositories.ItemRepository;
 import is.hi.energy.Services.ItemService;

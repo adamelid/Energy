@@ -2,23 +2,13 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Energy</title>
+    <title>Cart</title>
 </head>
 <body>
 <div>
-    <p>
-        <a href="login">Login</a>
-         /
-        <a href="signup">Sign up</a>
-    </p>
-</div>
-<div>
-    <h2>Welcome to the home of energy.</h2>
-    <div th:switch="${user.hasRole}">
-        <h3 th:case="'USER'"><a href="cart">My Cart</a></h3>
-    </div>
-    <div th:switch="${items}">
-        <h2 th:case="null">We currently have no products in stock!</h2>
+    <h2>Welcome to your cart.</h2>
+    <div th:switch="${cart}">
+        <h2 th:case="null">Your cart is currently empty!</h2>
         <div th:case="*">
             <h2>Products:</h2>
             <table>
@@ -33,15 +23,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:switch="${user.hasRole}" th:each="item : ${items}">
+                <tr th:each="cart : ${items}">
                     <td th:text="${item.name}"></td>
                     <td th:text="${item.description}"></td>
                     <td th:text="${item.manufacturer}"></td>
                     <td th:text="${item.caffeineAmount}"></td>
                     <td th:text="${item.rating}"></td>
                     <td th:text="${item.price}"></td>
-                    <td th:case="'ADMIN'"><a th:href="@{/delete/{id}(id=${item.ID})}">Delete</a></td>
-                    <td th:case="'USER'"><a th:href="@{/addtocart/{id}(id=${item.ID})}">Add to cart</a></td>
                 </tr>
                 </tbody>
             </table>

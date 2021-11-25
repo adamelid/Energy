@@ -1,5 +1,6 @@
 package is.hi.energy.Services;
 
+import is.hi.energy.Persistence.Entities.Cart;
 import is.hi.energy.Persistence.Entities.Item;
 
 import java.util.List;

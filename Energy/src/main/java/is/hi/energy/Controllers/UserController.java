@@ -49,16 +49,10 @@ public class UserController {
         }
         User exists = userService.login(user);
         if(exists != null){
-            if (exists.getIsAdmin()){
-                session.setAttribute("LoggedInUser", exists);
-                model.addAttribute("LoggedInUser", exists);
-                return "admin";
-            }
-            else{
-                session.setAttribute("LoggedInUser", exists);
-                model.addAttribute("LoggedInUser", exists);
-                return "home";
-            }
+            session.setAttribute("LoggedInUser", exists);
+            model.addAttribute("LoggedInUser", exists);
+            //if (exists.getHasRole() == "ADMIN"){ return "admin"; }
+            return "/";
         }
         return "redirect:/";
     }

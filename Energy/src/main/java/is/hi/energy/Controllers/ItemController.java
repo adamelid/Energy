@@ -1,6 +1,8 @@
 package is.hi.energy.Controllers;
 
+import is.hi.energy.Persistence.Entities.Cart;
 import is.hi.energy.Persistence.Entities.Item;
+import is.hi.energy.Services.CartService;
 import is.hi.energy.Services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ItemController {
     private ItemService itemService;
+    private CartService cartService;
 
     @Autowired
     public ItemController(ItemService itemService){
@@ -50,6 +55,20 @@ public class ItemController {
     public String deleteItem(@PathVariable("id") long id, Model model){
         Item itemToDelete = itemService.findByID(id);
         itemService.delete(itemToDelete);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/addtocart/{id}", method = RequestMethod.GET)
+    public String addToCart(@PathVariable("id") long id, Model model){
+        Item itemToAdd = itemService.findByID(id);
+        cartService.addToCart(itemToAdd);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/removefromcart/{id}", method = RequestMethod.GET)
+    public String removeFromCart(@PathVariable("id") long id, Model model){
+        Item itemToRemove = itemService.findByID(id);
+        cartService.removeFromCart(itemToRemove);
         return "redirect:/";
     }
 }

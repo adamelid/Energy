@@ -1,6 +1,8 @@
 package is.hi.energy.Persistence.Entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -12,13 +14,16 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private Boolean isAdmin;
+    private String hasRole;
 
-    public User(String username, String password, String email, Boolean isAdmin) {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Cart> userCart = new ArrayList<>();
+
+    public User(String username, String password, String email, String hasRole) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.isAdmin = isAdmin;
+        this.hasRole = hasRole;
     }
 
     public long getID() {
@@ -53,7 +58,7 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getIsAdmin() {return isAdmin;}
+    public String getHasRole() {return hasRole;}
 
-    public void setIsAdmin(Boolean isAdmin) {this.isAdmin = isAdmin; }
+    public void setHasRole(String hasRole) {this.hasRole = hasRole; }
 }

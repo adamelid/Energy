@@ -1,6 +1,8 @@
 package is.hi.energy.Persistence.Entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -12,17 +14,20 @@ public class Item {
     private String name;
     private String description;
     private String manufacturer;
+    private int caffeineAmount;
     private double rating;
     private int price;
-    private int caffeineAmount;
 
-    public Item(String name, String description, String manufacturer, double rating, int price, int caffeineAmount) {
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carts = new ArrayList<>();
+
+    public Item(String name, String description, String manufacturer, int caffeineAmount, double rating, int price) {
         this.name = name;
         this.description = description;
         this.manufacturer = manufacturer;
+        this.caffeineAmount = caffeineAmount;
         this.rating = rating;
         this.price = price;
-        this.caffeineAmount = caffeineAmount;
     }
 
     public long getID() {
@@ -57,9 +62,11 @@ public class Item {
         this.manufacturer = manufacturer;
     }
 
-    public double getRating() {
-        return rating;
-    }
+    public int getCaffeineAmount() { return caffeineAmount; }
+
+    public void setCaffeineAmount(int caffeineAmount) { this.caffeineAmount = caffeineAmount; }
+
+    public double getRating() { return rating; }
 
     public void setRating(double rating) {
         this.rating = rating;
@@ -71,13 +78,5 @@ public class Item {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public int getCaffeineAmount() {
-        return caffeineAmount;
-    }
-
-    public void setCaffeineAmount(int caffeineAmount) {
-        this.caffeineAmount = caffeineAmount;
     }
 }
