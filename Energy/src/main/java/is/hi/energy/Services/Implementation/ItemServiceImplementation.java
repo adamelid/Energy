@@ -6,7 +6,6 @@ import is.hi.energy.Services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,9 +13,7 @@ public class ItemServiceImplementation implements ItemService {
     private ItemRepository itemRepository;
 
     @Autowired
-    public ItemServiceImplementation() {
-        this.itemRepository = itemRepository;
-    }
+    public ItemServiceImplementation(ItemRepository itemRepository) { this.itemRepository = itemRepository; }
 
     @Override
     public Item findByName(String name) {

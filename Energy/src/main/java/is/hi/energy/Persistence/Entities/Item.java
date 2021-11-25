@@ -8,6 +8,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
+
     private String name;
     private String description;
     private String manufacturer;

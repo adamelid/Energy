@@ -20,11 +20,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // End points to add
-    // Signup (GET, POST)
-    // Login (GET, POST)
-    // LoggedIn (GET)
-
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupGET(User user){
         return "signup";
@@ -54,9 +49,16 @@ public class UserController {
         }
         User exists = userService.login(user);
         if(exists != null){
-            session.setAttribute("LoggedInUser", exists);
-            model.addAttribute("LoggedInUser", exists);
-            return "LoggedInUser";
+            if (exists.getIsAdmin()){
+                session.setAttribute("LoggedInUser", exists);
+                model.addAttribute("LoggedInUser", exists);
+                return "admin";
+            }
+            else{
+                session.setAttribute("LoggedInUser", exists);
+                model.addAttribute("LoggedInUser", exists);
+                return "home";
+            }
         }
         return "redirect:/";
     }
